@@ -138,5 +138,16 @@ namespace Moq
 
 			yield return mock.Object;			
 		}
+		
+		private IEnumerable<T> CreateMocks2<T>(MockBehavior behavior) where T : class
+		{			
+			var mock = this.Create<T>(behavior);
+			if (behavior != MockBehavior.Strict)
+			{
+				mock.SetupAllProperties();
+			}
+
+			yield return mock.Object;			
+		}
 	}
 }
